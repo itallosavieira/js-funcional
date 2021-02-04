@@ -13,10 +13,18 @@ const carrinho = [
 // 3. MEDIA TOTAIS
 
 const media = carrinho
-    .filter(item => item.fragil)
-    .map(item => item.qtde * item.preco)
-    .reduce((acc, el) => acc + el / carrinho.length)
-
+    .filter(el => el.fragil)
+    .map(el => el.qtde * el.preco)
+    .reduce((acc, el) => {
+            const newQtde = acc.qtde + 1
+            const newTotal = acc.total + el
+            console.log(acc, el)
+            return {
+                qtde: newQtde,
+                total: newTotal,
+                media: newTotal/newQtde
+            }
+        }, { qtde: 0, total: 0, media: 0 })
 
 
 console.log(media)
